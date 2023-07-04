@@ -1,11 +1,16 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { initialize } from 'react-native-clarity';
+import ErrorBoundary from 'react-native-error-boundary'
 
 import { CameraScreen } from './screens/camera';
 import { DashboardScreen } from './screens/dashboard';
 import { NativeBaseProvider, extendTheme } from 'native-base';
 import { PermissionsProvider } from './providers/permissions';
+
+const errorHandler = (error) => {
+  console.log(error);
+}
 
 const Stack = createNativeStackNavigator();
 
@@ -30,6 +35,7 @@ export default function App() {
   initialize("YOUR_CLARITY_PROJECT_ID_HERE");
 
   return (
+    <ErrorBoundary onError={errorHandler}>
       <NativeBaseProvider>
       <PermissionsProvider>
         <NavigationContainer>
@@ -37,5 +43,6 @@ export default function App() {
         </NavigationContainer>
       </PermissionsProvider>
       </NativeBaseProvider>
+    </ErrorBoundary>
   );
 }
