@@ -18,5 +18,4 @@ Steps to reproduce:
 
 7. comment out `initialize(...)` line. rebuild app, camera preview screen appears correctly all the time.
 
-
-
+As the proof of the bug, there is a screen record [a relative link] (screensecord-bug.mp4)
