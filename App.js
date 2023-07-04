@@ -31,11 +31,10 @@ const config = {
 // extend the theme
 export const theme = extendTheme({ config });
 
-export default function App() {
+function App() {
   initialize("YOUR_CLARITY_PROJECT_ID_HERE");
 
   return (
-    <ErrorBoundary onError={errorHandler}>
       <NativeBaseProvider>
       <PermissionsProvider>
         <NavigationContainer>
@@ -43,6 +42,13 @@ export default function App() {
         </NavigationContainer>
       </PermissionsProvider>
       </NativeBaseProvider>
-    </ErrorBoundary>
   );
 }
+
+export default function realApp() {
+  return (
+    <ErrorBoundary onError={errorHandler}>
+      <App />
+    </ErrorBoundary>
+  );
+};
