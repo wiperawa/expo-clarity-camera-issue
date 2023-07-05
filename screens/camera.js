@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import { Box, HStack } from 'native-base';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { Camera, FlashMode } from 'expo-camera';
-import { useIsFocused } from '@react-navigation/native';
 
 export const CameraScreen = () => {
-  const isFocused = useIsFocused();
+  const [isFocused, setIsFocused] = useState(false);
+  useLayoutEffect(() => {
+    setTimeout(() => setIsFocused(true), 500);
+    return () => { setTimeout(() => setIsFocused(false), 1) };
+  }, []);
 
   const takePhotoHandler = () => {
     console.log('take photo');
